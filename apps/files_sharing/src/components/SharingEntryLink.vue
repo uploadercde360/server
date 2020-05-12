@@ -198,9 +198,9 @@
 					<!-- password protected by Talk -->
 					<ActionCheckbox v-if="isPasswordProtectedByTalkAvailable"
 						:checked.sync="isPasswordProtectedByTalk"
-						:disabled="saving"
+						:disabled="!canTogglePasswordProtectedByTalkAvailable || saving"
 						class="share-link-password-talk-checkbox"
-						@change="queueUpdate('sendPasswordByTalk')">
+						@change="queueUpdate('sendPasswordByTalk', 'password')">
 						{{ t('files_sharing', 'Video verification') }}
 					</ActionCheckbox>
 
@@ -479,6 +479,19 @@ export default {
 			return this.share
 				? this.share.type === this.SHARE_TYPES.SHARE_TYPE_EMAIL
 				: false
+		},
+
+		canTogglePasswordProtectedByTalkAvailable() {
+			if (!this.isPasswordProtected) {
+				// Makes no sense
+				return false
+			} else if (this.isEmailShareType && !this.hasUnsavedPassword && !this.isPasswordProtectedByTalk) {
+				// For email shares we need a new password in order to enable
+				return false
+			}
+
+			// Anything else should be fine
+			return true
 		},
 
 		/**
