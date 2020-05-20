@@ -79,7 +79,7 @@ class Capabilities implements IPublicCapability {
 				'color-text' => $this->theming->getTextColorPrimary(),
 				'color-element' => $this->util->elementColor($color),
 				'logo' => $this->url->getAbsoluteURL($this->theming->getLogo()),
-				'background' => $backgroundLogo === 'backgroundColor' ?
+				'background' => $backgroundLogo === 'backgroundColor' || ($backgroundLogo === null && $this->theming->getColorPrimary() !== '#0082c9') ?
 					$this->theming->getColorPrimary() :
 					$this->url->getAbsoluteURL($this->theming->getBackground()),
 				'background-plain' => $backgroundLogo === 'backgroundColor',
