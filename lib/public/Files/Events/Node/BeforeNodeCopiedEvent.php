@@ -28,6 +28,6 @@ namespace OCP\Files\Events\Node;
 /**
  * @since 20.0.0
  */
-class NodeWrittenEvent extends AbstractNodeEvent {
+class BeforeNodeCopiedEvent extends AbstractNodesEvent {
 
 }

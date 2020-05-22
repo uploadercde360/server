@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2020, Roeland Jago Douma <roeland@famdouma.nl>
@@ -24,28 +25,9 @@ declare(strict_types=1);
 
 namespace OCP\Files\Events\Node;
 
-use OCP\EventDispatcher\Event;
-use OCP\Files\Node;
-
 /**
  * @since 20.0.0
  */
-class NodeDeletedEvent extends Event {
+class NodeDeletedEvent extends AbstractNodeEvent {
 
-	/** @var Node */
-	private $node;
-
-	/**
-	 * @since 20.0.0
-	 */
-	public function __construct(Node $node) {
-		$this->node = $node;
-	}
-
-	/**
-	 * @since 20.0.0
-	 */
-	public function getNode(): Node {
-		return $this->node;
-	}
 }

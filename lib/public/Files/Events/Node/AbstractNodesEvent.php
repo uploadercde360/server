@@ -25,9 +25,38 @@ declare(strict_types=1);
 
 namespace OCP\Files\Events\Node;
 
+use OCP\EventDispatcher\Event;
+use OCP\Files\Node;
+
 /**
  * @since 20.0.0
  */
-class NodeWrittenEvent extends AbstractNodeEvent {
+abstract class AbstractNodesEvent extends Event {
 
+	/** @var Node */
+	private $source;
+	/** @var Node */
+	private $target;
+
+	/**
+	 * @since 20.0.0
+	 */
+	public function __construct(Node $source, Node $target) {
+		$this->source = $source;
+		$this->target = $target;
+	}
+
+	/**
+	 * @since 20.0.0
+	 */
+	public function getSource(): Node {
+		return $this->source;
+	}
+
+	/**
+	 * @since 20.0.0
+	 */
+	public function getTarget(): Node {
+		return $this->target;
+	}
 }
