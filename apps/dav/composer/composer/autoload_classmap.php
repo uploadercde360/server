@@ -210,6 +210,7 @@ return array(
     'OCA\\DAV\\RootCollection' => $baseDir . '/../lib/RootCollection.php',
     'OCA\\DAV\\Server' => $baseDir . '/../lib/Server.php',
     'OCA\\DAV\\Settings\\CalDAVSettings' => $baseDir . '/../lib/Settings/CalDAVSettings.php',
+    'OCA\\DAV\\Storage\\PublicOwnerWrapper' => $baseDir . '/../lib/Storage/PublicOwnerWrapper.php',
     'OCA\\DAV\\SystemTag\\SystemTagMappingNode' => $baseDir . '/../lib/SystemTag/SystemTagMappingNode.php',
     'OCA\\DAV\\SystemTag\\SystemTagNode' => $baseDir . '/../lib/SystemTag/SystemTagNode.php',
     'OCA\\DAV\\SystemTag\\SystemTagPlugin' => $baseDir . '/../lib/SystemTag/SystemTagPlugin.php',
@@ -223,6 +224,7 @@ return array(
     'OCA\\DAV\\Upload\\CleanupService' => $baseDir . '/../lib/Upload/CleanupService.php',
     'OCA\\DAV\\Upload\\FutureFile' => $baseDir . '/../lib/Upload/FutureFile.php',
     'OCA\\DAV\\Upload\\RootCollection' => $baseDir . '/../lib/Upload/RootCollection.php',
+    'OCA\\DAV\\Upload\\UploadFile' => $baseDir . '/../lib/Upload/UploadFile.php',
     'OCA\\DAV\\Upload\\UploadFolder' => $baseDir . '/../lib/Upload/UploadFolder.php',
     'OCA\\DAV\\Upload\\UploadHome' => $baseDir . '/../lib/Upload/UploadHome.php',
 );

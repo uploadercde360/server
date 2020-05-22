@@ -4,12 +4,12 @@
  *
  * @author Arne Hamann <kontakt+github@arne.email>
  * @author Björn Schießle <bjoern@schiessle.org>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Daniel Kesselberg <mail@danielkesselberg.de>
  * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Joas Schilling <coding@schilljs.com>
  * @author John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  * @author Julius Härtl <jus@bitgrid.net>
- * @author labor4 <schreibtisch@labor4.ch>
  * @author Thomas Müller <thomas.mueller@tmit.eu>
  *
  * @license AGPL-3.0
@@ -105,6 +105,8 @@ class AddressBookImpl implements IAddressBook {
 	 * 	- 'types' boolean (since 15.0.0) If set to true, fields that come with a TYPE property will be an array
 	 *    example: ['id' => 5, 'FN' => 'Thomas Tanghus', 'EMAIL' => ['type => 'HOME', 'value' => 'g@h.i']]
 	 * 	- 'escape_like_param' - If set to false wildcards _ and % are not escaped
+	 * 	- 'limit' - Set a numeric limit for the search results
+	 * 	- 'offset' - Set the offset for the limited search results
 	 * @return array an array of contacts which are arrays of key-value-pairs
 	 *  example result:
 	 *  [

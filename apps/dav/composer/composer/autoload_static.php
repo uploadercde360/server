@@ -225,6 +225,7 @@ class ComposerStaticInitDAV
         'OCA\\DAV\\RootCollection' => __DIR__ . '/..' . '/../lib/RootCollection.php',
         'OCA\\DAV\\Server' => __DIR__ . '/..' . '/../lib/Server.php',
         'OCA\\DAV\\Settings\\CalDAVSettings' => __DIR__ . '/..' . '/../lib/Settings/CalDAVSettings.php',
+        'OCA\\DAV\\Storage\\PublicOwnerWrapper' => __DIR__ . '/..' . '/../lib/Storage/PublicOwnerWrapper.php',
         'OCA\\DAV\\SystemTag\\SystemTagMappingNode' => __DIR__ . '/..' . '/../lib/SystemTag/SystemTagMappingNode.php',
         'OCA\\DAV\\SystemTag\\SystemTagNode' => __DIR__ . '/..' . '/../lib/SystemTag/SystemTagNode.php',
         'OCA\\DAV\\SystemTag\\SystemTagPlugin' => __DIR__ . '/..' . '/../lib/SystemTag/SystemTagPlugin.php',
@@ -238,6 +239,7 @@ class ComposerStaticInitDAV
         'OCA\\DAV\\Upload\\CleanupService' => __DIR__ . '/..' . '/../lib/Upload/CleanupService.php',
         'OCA\\DAV\\Upload\\FutureFile' => __DIR__ . '/..' . '/../lib/Upload/FutureFile.php',
         'OCA\\DAV\\Upload\\RootCollection' => __DIR__ . '/..' . '/../lib/Upload/RootCollection.php',
+        'OCA\\DAV\\Upload\\UploadFile' => __DIR__ . '/..' . '/../lib/Upload/UploadFile.php',
         'OCA\\DAV\\Upload\\UploadFolder' => __DIR__ . '/..' . '/../lib/Upload/UploadFolder.php',
         'OCA\\DAV\\Upload\\UploadHome' => __DIR__ . '/..' . '/../lib/Upload/UploadHome.php',
     );

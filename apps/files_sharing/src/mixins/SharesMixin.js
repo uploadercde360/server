@@ -64,7 +64,7 @@ export default {
 			 * ! This allow vue to make the Share class state reactive
 			 * ! do not remove it ot you'll lose all reactivity here
 			 */
-			reactiveState: this.share && this.share.state,
+			reactiveState: this.share?.state,
 
 			SHARE_TYPES: {
 				SHARE_TYPE_USER: OC.Share.SHARE_TYPE_USER,
@@ -300,5 +300,16 @@ export default {
 		debounceQueueUpdate: debounce(function(property) {
 			this.queueUpdate(property)
 		}, 500),
+
+		/**
+		 * Returns which dates are disabled for the datepicker
+		 * @param {Date} date date to check
+		 * @returns {boolean}
+		 */
+		disabledDate(date) {
+			const dateMoment = moment(date)
+			return (this.dateTomorrow && dateMoment.isBefore(this.dateTomorrow, 'day'))
+				|| (this.dateMaxEnforced && dateMoment.isSameOrAfter(this.dateMaxEnforced, 'day'))
+		},
 	},
 }

@@ -8,6 +8,7 @@
  * @author Daniel Calviño Sánchez <danxuliu@gmail.com>
  * @author Jan-Christoph Borchardt <hey@jancborchardt.net>
  * @author Joas Schilling <coding@schilljs.com>
+ * @author Julius Härtl <jus@bitgrid.net>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Robin Appelman <robin@icewind.nl>
  * @author Robin McCorkell <robin@mccorkell.me.uk>
@@ -203,7 +204,9 @@ class ApiTest extends TestCase {
 		$ocs->cleanup();
 
 		$data = $result->getData();
-		$this->assertEquals(1, $data['permissions']);
+		$this->assertEquals(\OCP\Constants::PERMISSION_READ |
+			\OCP\Constants::PERMISSION_SHARE,
+			$data['permissions']);
 		$this->assertEmpty($data['expiration']);
 		$this->assertTrue(is_string($data['token']));
 
@@ -228,7 +231,8 @@ class ApiTest extends TestCase {
 			\OCP\Constants::PERMISSION_READ |
 			\OCP\Constants::PERMISSION_CREATE |
 			\OCP\Constants::PERMISSION_UPDATE |
-			\OCP\Constants::PERMISSION_DELETE,
+			\OCP\Constants::PERMISSION_DELETE |
+			\OCP\Constants::PERMISSION_SHARE,
 			$data['permissions']
 		);
 		$this->assertEmpty($data['expiration']);
@@ -995,7 +999,8 @@ class ApiTest extends TestCase {
 			\OCP\Constants::PERMISSION_READ |
 			\OCP\Constants::PERMISSION_CREATE |
 			\OCP\Constants::PERMISSION_UPDATE |
-			\OCP\Constants::PERMISSION_DELETE,
+			\OCP\Constants::PERMISSION_DELETE |
+			\OCP\Constants::PERMISSION_SHARE,
 			$share1->getPermissions()
 		);
 

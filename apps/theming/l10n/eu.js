@@ -1,9 +1,11 @@
 OC.L10N.register(
     "theming",
     {
+    "Loading preview…" : "Aurreikuspena kargatzen...",
     "Saved" : "Gordeta",
     "Admin" : "Administratzailea",
     "a safe home for all your data" : "zure datu guztientzako toki segurua",
+    "Name cannot be empty" : "Izena ezin da hutsik egon",
     "The given name is too long" : "Idatzitako izena luzeegia da",
     "The given web address is too long" : "Idatzitako web helbidea luzeegia da",
     "The given slogan is too long" : "Emandako leloa luzeegia da",
@@ -22,11 +24,21 @@ OC.L10N.register(
     "Privacy policy" : "Pribatutasun politika",
     "Open documentation" : "Ireki dokumentazioa",
     "Name" : "Izena",
+    "Reset to default" : "Berezarri balio lehenetsira",
     "Web link" : "Web esteka",
     "https://…" : "https://…",
     "Color" : "Kolorea",
+    "Logo" : "Logoa",
+    "Upload new logo" : "Kargatu logo berria",
+    "Login image" : "Saio-hasiera irudia",
+    "Upload new login background" : "Kargatu saio-hasiera atzeko-plano berria",
+    "Remove background image" : "Kendu atzeko-planoko irudia",
     "Advanced options" : "Ezarpen aurreratuak",
     "Legal notice link" : "Ohar legalaren esteka",
-    "Privacy policy link" : "Pribatutasun politikaren esteka"
+    "Privacy policy link" : "Pribatutasun politikaren esteka",
+    "Header logo" : "Goiburuaren logoa",
+    "Upload new header logo" : "Kargatu goiburuaren logo berria",
+    "Favicon" : "Gogoko-ikonoa",
+    "Upload new favicon" : "Kargatu gogoko-ikono berria"
 },
 "nplurals=2; plural=(n != 1);");

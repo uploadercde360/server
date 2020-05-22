@@ -6,6 +6,7 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  *
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Joas Schilling <coding@schilljs.com>
  * @author Julius Härtl <jus@bitgrid.net>
  * @author Morris Jobke <hey@morrisjobke.de>
@@ -95,7 +96,7 @@ class Admin implements ISettings {
 		$defaultCustomerUpdateServerURLPrefix = 'https://updates.nextcloud.com/customers/';
 
 		$isDefaultUpdateServerURL = $updateServerURL === $defaultUpdateServerURL
-			|| $updateServerURL === substr($updateServerURL, 0, strlen($defaultCustomerUpdateServerURLPrefix));
+			|| strpos($updateServerURL, $defaultCustomerUpdateServerURLPrefix) === 0;
 
 		$hasValidSubscription = $this->subscriptionRegistry->delegateHasValidSubscription();
 

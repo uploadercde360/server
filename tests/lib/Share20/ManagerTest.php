@@ -808,6 +808,7 @@ class ManagerTest extends \Test\TestCase {
 				['core', 'shareapi_enforce_expire_date', 'no', 'yes'],
 				['core', 'shareapi_expire_after_n_days', '7', '3'],
 				['core', 'shareapi_default_expire_date', 'no', 'yes'],
+				['core', 'link_defaultExpDays', 3, '3'],
 			]);
 
 		$expected = new \DateTime();
@@ -1367,24 +1368,6 @@ class ManagerTest extends \Test\TestCase {
 			->method('getAppValue')
 			->willReturnMap([
 				['core', 'shareapi_allow_links', 'yes', 'no'],
-			]);
-
-		self::invokePrivate($this->manager, 'linkCreateChecks', [$share]);
-	}
-
-
-	public function testLinkCreateChecksSharePermissions() {
-		$this->expectException(\Exception::class);
-		$this->expectExceptionMessage('Link shares can’t have reshare permissions');
-
-		$share = $this->manager->newShare();
-
-		$share->setPermissions(\OCP\Constants::PERMISSION_SHARE);
-
-		$this->config
-			->method('getAppValue')
-			->willReturnMap([
-				['core', 'shareapi_allow_links', 'yes', 'yes'],
 			]);
 
 		self::invokePrivate($this->manager, 'linkCreateChecks', [$share]);

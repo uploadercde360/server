@@ -27,6 +27,7 @@ OC.L10N.register(
     "Select a profile picture" : "Избор на снимка за профила",
     "Week starts on {fdow}" : "Първи ден от седмицата е {fdow}",
     "Groups" : "Групи",
+    "Retry" : "Опитай отново",
     "{actor} changed your password" : "{actor} промени паролата ви",
     "You changed your password" : "Променихте паролата си",
     "Your password was reset by an administrator" : "Паролата ви е променена от администратора",
@@ -255,6 +256,7 @@ OC.L10N.register(
     "New password" : "Нова парола",
     "Change password" : "Промени паролата",
     "Use a second factor besides your password to increase security for your account." : "Ползвайте двустепенно удостоверяване за да повишите сигурността на профила си.",
+    "Share" : "Сподели",
     "Afrikaans" : "африкаанс (бурски)",
     "Akan" : "акана",
     "Albanian" : "албански",
@@ -341,10 +343,6 @@ OC.L10N.register(
     "Zulu" : "зулуски",
     "Official apps are developed by and within the community. They offer central functionality and are ready for production use." : "Официалните приложения са разработени от общността. ",
     "Official" : "Официално",
-    "Store credentials" : "Запиши",
-    "cron.php is registered at a webcron service to call cron.php every 15 minutes over HTTP." : "Услугата webcron стартира cron.php всеки 15 минути по HTTP.",
-    "Use system cron service to call the cron.php file every 15 minutes." : "Ползва услугата cron на сървъра за да стартира cron.php всеки 15 минути.",
-    "Set default expiration date" : "Задайте стандартен срок на валидност",
-    "Share" : "Сподели"
+    "Set default expiration date" : "Задайте стандартен срок на валидност"
 },
 "nplurals=2; plural=(n != 1);");

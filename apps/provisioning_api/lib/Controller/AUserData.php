@@ -6,6 +6,7 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  *
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Joas Schilling <coding@schilljs.com>
  * @author John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
@@ -145,7 +146,7 @@ abstract class AUserData extends OCSController {
 		$data[AccountManager::PROPERTY_WEBSITE] = $userAccount[AccountManager::PROPERTY_WEBSITE]['value'];
 		$data[AccountManager::PROPERTY_TWITTER] = $userAccount[AccountManager::PROPERTY_TWITTER]['value'];
 		$data['groups'] = $gids;
-		$data['language'] = $this->config->getUserValue($targetUserObject->getUID(), 'core', 'lang');
+		$data['language'] = $this->config->getSystemValue('force_language', $this->config->getUserValue($targetUserObject->getUID(), 'core', 'lang'));
 		$data['locale'] = $this->config->getUserValue($targetUserObject->getUID(), 'core', 'locale');
 
 		$backend = $targetUserObject->getBackend();

@@ -5,6 +5,8 @@ declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 Robin Appelman <robin@icewind.nl>
  *
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ * @author Julien Lutran <julien.lutran@corp.ovh.com>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Robin Appelman <robin@icewind.nl>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
@@ -69,6 +71,25 @@ class SwiftFactory {
 		$this->logger = $logger;
 	}
 
+	/**
+	 * Gets currently cached token id
+	 *
+	 * @return string
+	 * @throws StorageAuthException
+	 */
+	public function getCachedTokenId() {
+		if (!isset($this->params['cachedToken'])) {
+			throw new StorageAuthException('Unauthenticated ObjectStore connection');
+		}
+
+		// Is it V2 token?
+		if (isset($this->params['cachedToken']['token'])) {
+			return $this->params['cachedToken']['token']['id'];
+		}
+
+		return $this->params['cachedToken']['id'];
+	}
+
 	private function getCachedToken(string $cacheKey) {
 		$cachedTokenString = $this->cache->get($cacheKey . '/token');
 		if ($cachedTokenString) {
@@ -81,10 +102,10 @@ class SwiftFactory {
 	private function cacheToken(Token $token, string $serviceUrl, string $cacheKey) {
 		if ($token instanceof \OpenStack\Identity\v3\Models\Token) {
 			// for v3 the catalog is cached as part of the token, so no need to cache $serviceUrl separately
-			$value = json_encode($token->export());
+			$value = $token->export();
 		} else {
 			/** @var \OpenStack\Identity\v2\Models\Token $token */
-			$value = json_encode([
+			$value = [
 				'serviceUrl' => $serviceUrl,
 				'token' => [
 					'issued_at' => $token->issuedAt->format('c'),
@@ -92,9 +113,11 @@ class SwiftFactory {
 					'id' => $token->id,
 					'tenant' => $token->tenant
 				]
-			]);
+			];
 		}
-		$this->cache->set($cacheKey . '/token', $value);
+
+		$this->params['cachedToken'] = $value;
+		$this->cache->set($cacheKey . '/token', json_encode($value));
 	}
 
 	/**

@@ -7,6 +7,8 @@
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
  * @author Bjoern Schiessle <bjoern@schiessle.org>
  * @author Björn Schießle <bjoern@schiessle.org>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
+ * @author Julius Härtl <jus@bitgrid.net>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Robin Appelman <robin@icewind.nl>
@@ -43,6 +45,7 @@ use OCP\IRequest;
 use OCP\ISession;
 use OCP\IUserSession;
 use OCP\Share\IManager;
+use OCP\Share\IShare;
 
 /**
  * Class MountPublicLinkController
@@ -155,6 +158,7 @@ class MountPublicLinkController extends Controller {
 		}
 
 		$share->setSharedWith($shareWith);
+		$share->setShareType(IShare::TYPE_REMOTE);
 
 		try {
 			$this->federatedShareProvider->create($share);

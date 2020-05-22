@@ -18,7 +18,6 @@
  * @author Pauli Järvinen <pauli.jarvinen@gmail.com>
  * @author Robin Appelman <robin@icewind.nl>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
- * @author Stephan Müller <mail@stephanmueller.eu>
  * @author Thibault Coupin <thibault.coupin@gmail.com>
  * @author Vincent Petry <pvince81@owncloud.com>
  *
@@ -396,7 +395,12 @@ class Manager implements IManager {
 		if ($fullId === null && $expirationDate === null && $this->shareApiInternalDefaultExpireDate()) {
 			$expirationDate = new \DateTime();
 			$expirationDate->setTime(0,0,0);
-			$expirationDate->add(new \DateInterval('P'.$this->shareApiInternalDefaultExpireDays().'D'));
+
+			$days = (int)$this->config->getAppValue('core', 'internal_defaultExpDays', $this->shareApiLinkDefaultExpireDays());
+			if ($days > $this->shareApiLinkDefaultExpireDays()) {
+				$days = $this->shareApiLinkDefaultExpireDays();
+			}
+			$expirationDate->add(new \DateInterval('P'.$days.'D'));
 		}
 
 		// If we enforce the expiration date check that is does not exceed
@@ -467,7 +471,12 @@ class Manager implements IManager {
 		if ($fullId === null && $expirationDate === null && $this->shareApiLinkDefaultExpireDate()) {
 			$expirationDate = new \DateTime();
 			$expirationDate->setTime(0,0,0);
-			$expirationDate->add(new \DateInterval('P'.$this->shareApiLinkDefaultExpireDays().'D'));
+
+			$days = (int)$this->config->getAppValue('core', 'link_defaultExpDays', $this->shareApiLinkDefaultExpireDays());
+			if ($days > $this->shareApiLinkDefaultExpireDays()) {
+				$days = $this->shareApiLinkDefaultExpireDays();
+			}
+			$expirationDate->add(new \DateInterval('P'.$days.'D'));
 		}
 
 		// If we enforce the expiration date check that is does not exceed
@@ -613,11 +622,6 @@ class Manager implements IManager {
 		// Are link shares allowed?
 		if (!$this->shareApiAllowLinks()) {
 			throw new \Exception('Link sharing is not allowed');
-		}
-
-		// Link shares by definition can't have share permissions
-		if ($share->getPermissions() & \OCP\Constants::PERMISSION_SHARE) {
-			throw new \InvalidArgumentException('Link shares can’t have reshare permissions');
 		}
 
 		// Check if public upload is allowed
@@ -1507,6 +1511,19 @@ class Manager implements IManager {
 	public function groupDeleted($gid) {
 		$provider = $this->factory->getProviderForType(\OCP\Share::SHARE_TYPE_GROUP);
 		$provider->groupDeleted($gid);
+
+		$excludedGroups = $this->config->getAppValue('core', 'shareapi_exclude_groups_list', '');
+		if ($excludedGroups === '') {
+			return;
+		}
+
+		$excludedGroups = json_decode($excludedGroups, true);
+		if (json_last_error() !== JSON_ERROR_NONE) {
+			return;
+		}
+
+		$excludedGroups = array_diff($excludedGroups, [$gid]);
+		$this->config->setAppValue('core', 'shareapi_exclude_groups_list', json_encode($excludedGroups));
 	}
 
 	/**

@@ -4,6 +4,7 @@
  *
  * @author Bjoern Schiessle <bjoern@schiessle.org>
  * @author Daniel Kesselberg <mail@danielkesselberg.de>
+ * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Joas Schilling <coding@schilljs.com>
  * @author Robin Appelman <robin@icewind.nl>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
@@ -317,6 +318,7 @@ class Version13000Date20170718121200 extends SimpleMigrationStep {
 			]);
 			$table->setPrimaryKey(['id']);
 			$table->addIndex(['userid'], 'property_index');
+			$table->addIndex(['userid', 'propertypath'], 'properties_path_index');
 		}
 
 		if (!$schema->hasTable('share')) {

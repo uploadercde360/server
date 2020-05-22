@@ -39,17 +39,17 @@
 			<span id="nextcloud">
 				<div class="logo logo-icon svg"></div>
 				<h1 class="header-appname">
-					<?php if (isset($template)) {
-			p($template->getHeaderTitle());
-		} else {
-			p($theme->getName());
-		} ?>
+					<?php if (isset($template) && $template->getHeaderTitle() !== '') { ?>
+						<?php p($template->getHeaderTitle()); ?>
+					<?php } else { ?>
+						<?php	p($theme->getName()); ?>
+					<?php } ?>
 				</h1>
+				<?php if (isset($template) && $template->getHeaderDetails() !== '') { ?>
 				<div class="header-shared-by">
-					<?php if (isset($template)) {
-			p($template->getHeaderDetails());
-		} ?>
+					<?php p($template->getHeaderDetails()); ?>
 				</div>
+				<?php } ?>
 			</span>
 		</div>
 

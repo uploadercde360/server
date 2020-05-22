@@ -32,6 +32,7 @@ OC.L10N.register(
     "Groups" : "Nhóm",
     "Group list is empty" : "Danh sách nhóm trống",
     "Unable to retrieve the group list" : "Không thể truy xuất danh sách nhóm",
+    "Unsaved changes" : "Thay đổi chưa được lưu",
     "{actor} added you to group {group}" : "{actor} đã thêm bạn vào nhóm {group}",
     "You added {user} to group {group}" : "Bạn đã thêm {user} vào nhóm {group}",
     "{actor} added {user} to group {group}" : "{actor} đã thêm {user} vào nhóm {group}",
@@ -266,9 +267,9 @@ OC.L10N.register(
     "Current password" : "Mật khẩu cũ",
     "New password" : "Mật khẩu mới",
     "Change password" : "Đổi mật khẩu",
+    "Share" : "Chia sẻ",
     "Official apps are developed by and within the community. They offer central functionality and are ready for production use." : "Các ứng dụng chính thức được phát triển bởi và trong cộng đồng. Họ cung cấp chức năng trung tâm và sẵn sàng để sử dụng sản xuất.",
     "Official" : "Chính thức",
-    "The backend does not support changing the display name" : "Trang cài đặt không hỗ trợ thay đổi tên hiển thị",
-    "Share" : "Chia sẻ"
+    "The backend does not support changing the display name" : "Trang cài đặt không hỗ trợ thay đổi tên hiển thị"
 },
 "nplurals=1; plural=0;");

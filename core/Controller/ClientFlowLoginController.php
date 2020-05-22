@@ -3,6 +3,7 @@
  * @copyright Copyright (c) 2017 Lukas Reschke <lukas@statuscode.ch>
  *
  * @author Bjoern Schiessle <bjoern@schiessle.org>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Daniel Kesselberg <mail@danielkesselberg.de>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Mario Danic <mario@lovelyhq.com>
@@ -374,6 +375,24 @@ class ClientFlowLoginController extends Controller {
 	public function apptokenRedirect(string $stateToken, string $user, string $password) {
 		if (!$this->isValidToken($stateToken)) {
 			return $this->stateTokenForbiddenResponse();
+		}
+
+		try {
+			$token = $this->tokenProvider->getToken($password);
+			if ($token->getLoginName() !== $user) {
+				throw new InvalidTokenException('login name does not match');
+			}
+		} catch (InvalidTokenException $e) {
+			$response = new StandaloneTemplateResponse(
+				$this->appName,
+				'403',
+				[
+					'message' => $this->l10n->t('Invalid app password'),
+				],
+				'guest'
+			);
+			$response->setStatus(Http::STATUS_FORBIDDEN);
+			return $response;
 		}
 
 		$redirectUri = 'nc://login/server:' . $this->getServerPath() . '&user:' . urlencode($user) . '&password:' . urlencode($password);

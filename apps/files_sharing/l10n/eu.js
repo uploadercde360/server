@@ -156,7 +156,6 @@ OC.L10N.register(
     "Shared with the conversation {user} by {owner}" : "{owner} jabeak {user} elkarrizketarekin partekatua",
     "Shared with {user} by {owner}" : "{owner} jabeak {user} erabiltzailearekin partekatua",
     "Added by {initiator}" : "Honek gehitua: {initiator}",
-    "Via folder" : "Karpeta bidez",
     "Internal link" : "Barneko esteka",
     "Link copied" : "Esteka kopiatu da",
     "Cannot copy, please copy the link manually" : "Ezin izan da kopiatu. Kopiatu esteka eskuz",

@@ -3,7 +3,6 @@
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  * @copyright Copyright (c) 2016 Joas Schilling <coding@schilljs.com>
  *
- * @author Bernhard Posselt <dev@bernhard-posselt.com>
  * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Joas Schilling <coding@schilljs.com>
  * @author Lukas Reschke <lukas@statuscode.ch>
@@ -162,6 +161,13 @@ class Application extends App {
 					$table = $schema->getTable('schedulingobjects');
 					if (!$table->hasIndex('schedulobj_principuri_index')) {
 						$subject->addHintForMissingSubject($table->getName(), 'schedulobj_principuri_index');
+					}
+				}
+
+				if ($schema->hasTable('properties')) {
+					$table = $schema->getTable('properties');
+					if (!$table->hasIndex('properties_path_index')) {
+						$subject->addHintForMissingSubject($table->getName(), 'properties_path_index');
 					}
 				}
 			}

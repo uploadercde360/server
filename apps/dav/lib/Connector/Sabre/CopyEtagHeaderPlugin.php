@@ -2,6 +2,7 @@
 /**
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  *
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
  * @author Thomas Müller <thomas.mueller@tmit.eu>
  * @author Vincent Petry <pvince81@owncloud.com>
@@ -46,7 +47,7 @@ class CopyEtagHeaderPlugin extends \Sabre\DAV\ServerPlugin {
 	public function initialize(\Sabre\DAV\Server $server) {
 		$this->server = $server;
 
-		$server->on('afterMethod', [$this, 'afterMethod']);
+		$server->on('afterMethod:*', [$this, 'afterMethod']);
 		$server->on('afterMove', [$this, 'afterMove']);
 	}
 

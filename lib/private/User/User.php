@@ -9,6 +9,7 @@
  * @author Joas Schilling <coding@schilljs.com>
  * @author John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  * @author Jörn Friedrich Dreyer <jfd@butonic.de>
+ * @author Julius Härtl <jus@bitgrid.net>
  * @author Leon Klingele <leon@struktur.de>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Morris Jobke <hey@morrisjobke.de>
@@ -36,6 +37,7 @@
 namespace OC\User;
 
 use OC\Accounts\AccountManager;
+use OC\Avatar\AvatarManager;
 use OC\Files\Cache\Storage;
 use OC\Hooks\Emitter;
 use OC_Helper;
@@ -237,6 +239,10 @@ class User implements IUser {
 
 			\OC::$server->getCommentsManager()->deleteReferencesOfActor('users', $this->uid);
 			\OC::$server->getCommentsManager()->deleteReadMarksFromUser($this);
+
+			/** @var IAvatarManager $avatarManager */
+			$avatarManager = \OC::$server->query(AvatarManager::class);
+			$avatarManager->deleteUserAvatar($this->uid);
 
 			$notification = \OC::$server->getNotificationManager()->createNotification();
 			$notification->setUser($this->uid);

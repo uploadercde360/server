@@ -10,6 +10,7 @@
  * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Joas Schilling <coding@schilljs.com>
  * @author John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
+ * @author Julius Härtl <jus@bitgrid.net>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Morris Jobke <hey@morrisjobke.de>
  * @author Robin Appelman <robin@icewind.nl>
@@ -965,6 +966,14 @@ class CardDavBackend implements BackendInterface, SyncSupport {
 				$query2->andWhere($query2->expr()->ilike('cp.value', $query->createNamedParameter('%' . $this->db->escapeLikeParameter($pattern) . '%')));
 			}
 		}
+//		// FIXME Broken on MySQL: SQLSTATE[42000]: Syntax error or access violation: 1235 This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery'
+//		// FIXME Should use 2 queries instead
+//		if (isset($options['limit'])) {
+//			$query2->setMaxResults($options['limit']);
+//		}
+//		if (isset($options['offset'])) {
+//			$query2->setFirstResult($options['offset']);
+//		}
 
 		$query->select('c.carddata', 'c.uri')->from($this->dbCardsTable, 'c')
 			->where($query->expr()->in('c.id', $query->createFunction($query2->getSQL())));

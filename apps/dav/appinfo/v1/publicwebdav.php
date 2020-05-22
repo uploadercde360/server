@@ -55,7 +55,8 @@ $serverFactory = new OCA\DAV\Connector\Sabre\ServerFactory(
 	\OC::$server->getTagManager(),
 	\OC::$server->getRequest(),
 	\OC::$server->getPreviewManager(),
-	\OC::$server->getEventDispatcher()
+	\OC::$server->getEventDispatcher(),
+	\OC::$server->getL10N('dav')
 );
 
 $requestUri = \OC::$server->getRequest()->getRequestUri();
@@ -82,7 +83,9 @@ $server = $serverFactory->createServer($baseuri, $requestUri, $authPlugin, funct
 	\OC\Files\Filesystem::addStorageWrapper('sharePermissions', function ($mountPoint, $storage) use ($share) {
 		return new \OC\Files\Storage\Wrapper\PermissionsMask(['storage' => $storage, 'mask' => $share->getPermissions() | \OCP\Constants::PERMISSION_SHARE]);
 	});
-
+	\OC\Files\Filesystem::addStorageWrapper('shareOwner', function ($mountPoint, $storage) use ($share) {
+		return new \OCA\DAV\Storage\PublicOwnerWrapper(['storage' => $storage, 'owner' => $share->getShareOwner()]);
+	});
 	\OC\Files\Filesystem::logWarningWhenAddingStorageWrapper($previousLog);
 
 	OC_Util::tearDownFS();

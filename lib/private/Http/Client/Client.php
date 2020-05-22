@@ -5,7 +5,9 @@ declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  *
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Daniel Kesselberg <mail@danielkesselberg.de>
+ * @author Joas Schilling <coding@schilljs.com>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Mohammed Abdellatif <m.latief@gmail.com>
  * @author Robin Appelman <robin@icewind.nl>
@@ -85,6 +87,10 @@ class Client implements IClient {
 
 		if (!isset($options[RequestOptions::HEADERS]['User-Agent'])) {
 			$options[RequestOptions::HEADERS]['User-Agent'] = 'Nextcloud Server Crawler';
+		}
+
+		if (!isset($options[RequestOptions::HEADERS]['Accept-Encoding'])) {
+			$options[RequestOptions::HEADERS]['Accept-Encoding'] = 'gzip';
 		}
 
 		return $options;

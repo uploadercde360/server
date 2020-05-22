@@ -3,6 +3,7 @@
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  *
  * @author Arthur Schiwon <blizzz@arthur-schiwon.de>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Morris Jobke <hey@morrisjobke.de>
  *
  * @license AGPL-3.0
@@ -33,7 +34,8 @@ class UserMapping extends AbstractMapping {
 	 * returns the DB table name which holds the mappings
 	 * @return string
 	 */
-	protected function getTableName() {
-		return '*PREFIX*ldap_user_mapping';
+	protected function getTableName(bool $includePrefix = true) {
+		$p = $includePrefix ? '*PREFIX*' : '';
+		return $p . 'ldap_user_mapping';
 	}
 }

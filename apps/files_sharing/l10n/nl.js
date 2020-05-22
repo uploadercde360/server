@@ -156,7 +156,7 @@ OC.L10N.register(
     "Shared with the conversation {user} by {owner}" : "Gedeeld met gesprek {user} door {owner}",
     "Shared with {user} by {owner}" : "Gedeeld met {user} door {owner}",
     "Added by {initiator}" : "Toegevoegd door {initiator}",
-    "Via folder" : "Via map",
+    "Via “{folder}”" : "Via “{folder}”",
     "Internal link" : "Interne link",
     "Link copied" : "Link gekopieerd",
     "Cannot copy, please copy the link manually" : "Kan niet kopiëren, kopieer de link handmatig",

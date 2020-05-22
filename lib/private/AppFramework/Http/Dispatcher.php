@@ -6,6 +6,7 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2016, ownCloud, Inc.
  *
  * @author Bernhard Posselt <dev@bernhard-posselt.com>
+ * @author Christoph Wurst <christoph@winzerhof-wurst.at>
  * @author Julius Härtl <jus@bitgrid.net>
  * @author Lukas Reschke <lukas@statuscode.ch>
  * @author Morris Jobke <hey@morrisjobke.de>
@@ -115,8 +116,7 @@ class Dispatcher {
 			$controller, $methodName, $response);
 
 		// depending on the cache object the headers need to be changed
-		$out[0] = $this->protocol->getStatusHeader($response->getStatus(),
-			$response->getLastModified(), $response->getETag());
+		$out[0] = $this->protocol->getStatusHeader($response->getStatus());
 		$out[1] = array_merge($response->getHeaders());
 		$out[2] = $response->getCookies();
 		$out[3] = $this->middlewareDispatcher->beforeOutput(
