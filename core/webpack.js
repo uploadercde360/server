@@ -11,7 +11,8 @@ module.exports = [
 			install: path.join(__dirname, 'src/install.js'),
 			files_client: path.join(__dirname, 'src/files/client.js'),
 			files_fileinfo: path.join(__dirname, 'src/files/fileinfo.js'),
-			files_iedavclient: path.join(__dirname, 'src/files/iedavclient.js')
+			files_iedavclient: path.join(__dirname, 'src/files/iedavclient.js'),
+			systemtags: path.resolve(__dirname, 'src/systemtags/merged-systemtags.js')
 		},
 		output: {
 			filename: '[name].js',
@@ -33,14 +34,5 @@ module.exports = [
 				jQuery: "jquery"
 			})
 		]
-	},
-	{
-		entry: {
-			systemtags: path.resolve(__dirname, 'js/systemtags/merged-systemtags.js')
-		},
-		output: {
-			filename: '[name].js',
-			path: path.resolve(__dirname, 'js/dist')
-		}
 	}
 ]
